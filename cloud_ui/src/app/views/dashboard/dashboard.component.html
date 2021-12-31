@@ -1,0 +1,134 @@
+<div class="animated fadeIn">
+  <div>
+    <div class="animated fadeIn">
+      <div class="row">
+
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <i class="fa fa-align-justify"></i> <span class="px-5"> Employee's Table </span>
+              <button type="button" class="btn btn-brand btn-md btn-spotify mr-1" style="margin-bottom: 4px" data-toggle="modal" (click)="addModal.show()">
+                <i class="fa fa-plus fa-lg"></i>
+              </button>
+            </div>
+            <div class="card-body">
+              <table class="table table-striped">
+                <thead class="w-100">
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Occupation</th>
+                    <th>CIN</th>
+                    <th>Date registered</th>
+                    <th>Date updated</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor='let employee of data'>
+                    <td>{{employee.id}}</td>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.occupation}}</td>
+                    <td>{{employee.CIN}}</td>
+                    <td>{{employee.created_at.split(".")[0].replace("T"," ")}}</td>
+                    <td>{{employee.updated_at.split(".")[0].replace("T"," ")}}</td>
+                    <td>
+                      <div class="row">
+                        <button type="button" (click)="deleteEmployee(employee.id)" class="btn btn-brand btn-md btn-flickr mr-1" style="margin-bottom: 4px">
+                          <i class="fa fa-trash fa-lg"></i>
+                          
+                        </button>
+                        <button type="button" class="btn btn-brand btn-md btn-twitter mr-1" style="margin-bottom: 4px" data-toggle="modal" (click)="fillUpdateModal(employee)">
+                          <i class="fa fa-edit fa-lg"></i>
+                        </button>
+                      
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul> -->
+            </div>
+          </div>
+        </div>
+        <!--/.col-->
+      </div>
+      <!--/.row-->
+      <!--/.row-->
+      <div bsModal #addModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Modal title</h4>
+              <button type="button" class="close" (click)="addModal.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Employee's Name</label>
+                  <input #name type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter the employee's name">
+                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Employee's Occupation</label>
+                  <input #occupation type="text" class="form-control" id="exampleInputPassword1" placeholder="Occupation">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Employee's CIN</label>
+                  <input #cin class="form-control" id="exampleInputPassword1" placeholder="CIN">
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="addModal.hide()">Close</button>
+              <button type="button" (click)="addEmployee(name.value,occupation.value,cin.value)" class="btn btn-primary">Save changes</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+      <div bsModal #updateModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Update Employee</h4>
+              <button type="button" class="close" (click)="updateModal.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Employee's Name</label>
+                <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter the employee's name">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Employee's Occupation</label>
+                <input type="text" class="form-control" id="occupation" placeholder="Occupation">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Employee's CIN</label>
+                <input class="form-control" id="cin" placeholder="CIN">
+              </div>
+              <input type="hidden" id="id">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="updateModal.hide()">Close</button>
+              <button type="button" (click)="updateEmployee()" class="btn btn-primary">Save changes</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+    </div>
+    
+ 
