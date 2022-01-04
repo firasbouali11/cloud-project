@@ -18,7 +18,10 @@ export class RegisterComponent {
         this.router.navigateByUrl("/dashboard")
     }).catch(err => this.alert = err.error.message)
   }
-  constructor(private http:HttpClient ,private router:Router) { }
+  constructor(private http:HttpClient ,private router:Router) { 
+
+    if(localStorage.getItem("t")) this.router.navigateByUrl("/dashboard")
+  }
 
   
 

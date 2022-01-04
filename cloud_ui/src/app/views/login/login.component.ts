@@ -12,7 +12,9 @@ import { GlobalConstantes } from '../../constantes';
 })
 export class LoginComponent { 
 
-  constructor(private http:HttpClient,private router:Router){}
+  constructor(private http:HttpClient,private router:Router){
+    if(localStorage.getItem("t")) this.router.navigateByUrl("/dashboard")
+  }
   response : any
   alert:string = ""
   navigationExtras: NavigationExtras
