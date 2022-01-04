@@ -1,7 +1,12 @@
 # Installation & Set up
 To run the plateform in either localhost or cloud webserver
 
-First, install docker and docker-compose
+## First, install docker and docker-compose
+
+**docker**: https://docs.docker.com/engine/install/ubuntu/
+**docker-compose**: https://docs.docker.com/compose/install/
+
+## Then deploy the app
 
 ```bash
 
@@ -13,7 +18,7 @@ sudo docker-compose up -d
 
 ```
 
-## Important !!
+### Important !!
 we need to run the migration manually to create the tables in the mysql database using the following command: 
 
 ```
