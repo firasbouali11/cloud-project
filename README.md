@@ -4,6 +4,7 @@ To run the plateform in either localhost or cloud webserver
 ## First, install docker and docker-compose
 
 **docker**: https://docs.docker.com/engine/install/ubuntu/
+
 **docker-compose**: https://docs.docker.com/compose/install/
 
 ## Then deploy the app
