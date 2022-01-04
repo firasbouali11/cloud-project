@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
    }
   response:string
   public fetchData(){
-    return  this.http.get(GlobalConstantes.api,{headers:new HttpHeaders().set("Content-Type","application/json").set("Authorization",`Bearer ${localStorage.getItem("t")}`)}).toPromise().then( resp => {
+    return  this.http.get(GlobalConstantes.api,{headers:new HttpHeaders().set("Accept","application/json").set("Authorization",`Bearer ${localStorage.getItem("t")}`)}).toPromise().then( resp => {
       this.data = resp
     }).catch(err => console.log(err))
     // return this.router.navigateByUrl("/login")
@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
   public addEmployee(name,occupation,cin){
     return this.http.post(GlobalConstantes.api,{
       name,occupation,CIN:cin
-    },{headers:{"Authorization":`Bearer ${localStorage.getItem("t")}`}}).toPromise().then(resp => {
+    },{headers:{"Accept":"application/json","Authorization":`Bearer ${localStorage.getItem("t")}`}}).toPromise().then(resp => {
       this.addModal.hide()
       this.fetchData()
     }).catch(err => console.log(err))
@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
 
   public deleteEmployee(id){
     return this.http.delete(GlobalConstantes.api+id,
-    {headers:{"Authorization":`Bearer ${localStorage.getItem("t")}`}}).toPromise()
+    {headers:{"Accept":"application/json","Authorization":`Bearer ${localStorage.getItem("t")}`}}).toPromise()
     .then(resp => {
       console.log(resp)
       this.fetchData()
@@ -56,7 +56,7 @@ export class DashboardComponent implements OnInit {
     const id = (<HTMLInputElement> document.getElementById("id") ).value;      
     return this.http.put(GlobalConstantes.api+id,{
       name,occupation,CIN
-    },{headers:{"Authorization":`Bearer ${localStorage.getItem("t")}`}})
+    },{headers:{"Accept":"application/json","Authorization":`Bearer ${localStorage.getItem("t")}`}})
     .toPromise().then(resp => {
       console.log(resp)
       this.fetchData()

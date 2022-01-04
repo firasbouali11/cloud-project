@@ -12,7 +12,7 @@ export class RegisterComponent {
   public register(username,email,password,confirmed){
     this.http.post(GlobalConstantes.api + "auth/create",{
       name:username, email,password, password_confirmation:confirmed
-    }).toPromise().then(resp => {
+    },{headers:{"Accept":"application/json"}}).toPromise().then(resp => {
         localStorage.setItem("t",resp["token"])
         localStorage.setItem("name",resp["user"].name)
         this.router.navigateByUrl("/dashboard")

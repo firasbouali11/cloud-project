@@ -22,7 +22,7 @@ export class LoginComponent {
     await this.http.post(GlobalConstantes.api+"auth/",{
       email:email,
       password: password,
-    }).toPromise().then(resp => this.response = resp).catch(err => this.response = err)
+    },{headers:{"Accept":"application/json"}}).toPromise().then(resp => this.response = resp).catch(err => this.response = err)
     
     if(!this.response.error){
       this.navigationExtras = {

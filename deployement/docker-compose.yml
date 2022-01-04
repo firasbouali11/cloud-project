@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+  db:
+    image: mysql
+    ports:
+      - 3306:3306
+    expose: 
+      - 3306
+    networks:
+      - netty
+    environment:
+      MYSQL_DATABASE: "cloud_project"
+      MYSQL_ROOT_PASSWORD: "password"
+
+  api:
+    build: .
+    volumes:
+      - ./employee-api:/api
+    ports:
+      - 8000:8000
+    expose:
+      - 8000
+    depends_on:
+      - db
+    networks:
+      - netty
+
+  webapp:
+    image: nginx
+    volumes:
+      - ./dist/:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api
+      - db
+    ports:
+      - 80:80
+    expose: 
+      - 80
+    networks:
+      - netty
+      
+networks:
+  netty:
+    driver: bridge
